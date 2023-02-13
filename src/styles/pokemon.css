@@ -1,20 +1,91 @@
 .pokemon {
-  align-items: center;
   border: 1px gray solid;
   border-radius: 10px;
   display: flex;
   justify-content: space-evenly;
-  margin: auto;
-  min-width: 25%;
-  width: fit-content;
+  flex-flow: wrap;
+  gap: 10px;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 .pokemon-overview {
   margin: 10px;
+  width: 160px;
+  height: auto;
+}
+.pokemon-box{
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: -5px 14px 38px -7px rgba(0,0,0,0.38);
+}
+.pokemon-image {
+background-color: rgb(238, 235, 235);
+width: 130px;
+border-radius: 5px;
 }
 
-.favorite-icon {
-  align-self: start;
-  margin: 10px;
-  width: 20px;
+span {
+  border-radius: 5px;
+  margin: 5px;
+  
+}
+
+/* cores do type */
+
+.normal-type {
+  background-color: #A4ACAF;
+  padding: 2px 5px;  
+  color: white;  
+}
+.grass-type {
+  background-color: #9BCC50;
+  padding: 2px 5px;  
+  color: white;
+}
+.poison-type {
+  background-color: #B97FC9;
+  padding: 2px 5px;  
+  color: white;  
+}
+.fire-type {
+  background-color: #FD7D24;
+  padding: 2px 5px;  
+  color: white;  
+}
+.water-type {
+  background-color: #4592C4;
+  padding: 2px 5px;  
+  color: white;  
+}
+.flying-type {
+  background-color: #94ccf1;
+  padding: 2px 5px;  
+  color: white;  
+}
+.bug-type {
+  background-color: #729F3F;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+
+
+
+/* Links */
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:visited {
+   color: #000;
+   text-decoration: none;
+}
+a:hover {
+   color: #999;
+   text-decoration: none;
+}
+a:active {
+   color: #333;
+   text-decoration: none;
 }

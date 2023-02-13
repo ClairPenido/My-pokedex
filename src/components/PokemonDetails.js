@@ -1,66 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import pokemonObject from '../types/pokemonObject';
+import PokemonContext from '../context/PokemonContext';
 import '../styles/pokemonDetails.css';
 import Pokemon from './Pokemon';
+import { useParams } from 'react-router-dom';
+import api from '../api';
 
-class PokemonDetails extends Component {
-  render() {
-    const {
-      pokemons,
-      favorites,
-      onChangeFavorite,
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    const pokemonFound = pokemons.find((pok) => pok.id === Number(id));
-    const isFavorite = favorites.some((fav) => fav.id === pokemonFound.id);
+export default function PokemonDetails() {
+  const { id } = useParams();
+  const [details, setDetails] = useState(false);
+  const [arrayPkDetails, setArrayPkDetails] = useState();
 
-    return (
-      <section className="pokemon-details">
+
+  useEffect(() => {
+    (async () => {
+      const res = await api.get(`/${id}`);
+      const data = res.data;
+      console.log('res', data);
+      setDetails(data);
+
+    })() //funcao anonima
+  }, []);
+
+
+  return (
+    details &&
+    <section className="pokemon-details">
+      <div>
         <h2>
-          {`${pokemonFound.name} Details`}
+          {`${details.forms[0].name} details`}
         </h2>
-        <Pokemon
-          pokemon={ pokemonFound }
-          isFavorite={ isFavorite }
-          hideLink
-        />
-        <h2>Sumário:</h2>
-        <p>{pokemonFound.summary}</p>
-        <h2>Hábitat:</h2>
-        <section className="pokemon-habitat">
-          { pokemonFound.foundAt.map((location) => (
-            <section key={ location.location }>
-              <span>{ location.location }</span>
-              <img src={ location.map } alt="mapa do pokemon" />
-            </section>
-          )) }
-        </section>
-        <label className="favorite-input" htmlFor="isFavoritedInput">
-          <h3>Pokemon Favoritado?</h3>
-          <input
-            type="checkbox"
-            id="isFavoritedInput"
-            checked={ isFavorite }
-            onChange={ () => onChangeFavorite(pokemonFound, isFavorite) }
-          />
-        </label>
-      </section>
-    );
-  }
+        <em><p className='number'>Nº {details.id}</p></em>
+        <img className='pokemon-image' src={details.sprites['front_default']} alt={details.forms[0].name} />
+        <p>Type: {details.types.map((type) => {
+          let result = type.type.name;
+          return (<span className={`${result}-type`}> {result} </span>)
+        })}
+        </p>
+        <p>Height: {details.height} m</p>
+        <p>Weight: {details.weight} kg</p>
+        <p>Status: {details.stats.map((stts) => {
+          return (
+            <span className={`${stts.name}-type`}> {stts.stat.name} {stts.base_stat} </span>)
+        })}
+        </p>
+        <p> Abilities: {details.abilities.map((a) => a.is_hidden ? (<span><em>{a.ability.name}</em></span>) : (<span>{a.ability.name}</span>))
+        }
+        </p>
+      </div>
+    </section>
+  );
 }
-
-PokemonDetails.propTypes = {
-  pokemons: PropTypes.arrayOf(pokemonObject.isRequired).isRequired,
-  favorites: PropTypes.arrayOf(pokemonObject.isRequired).isRequired,
-  onChangeFavorite: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
-};
-
-export default PokemonDetails;
