@@ -14,7 +14,7 @@ function Provider({ children }) {
   const [pokeFiltered, setPokeFiltered ] = useState([]);
 
   const arrayPokemons = () => {
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 300; i++) {
       const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
       pkNImg.push(fetch(url).then((res) => res.json()));
       console.log('url', pkNImg);

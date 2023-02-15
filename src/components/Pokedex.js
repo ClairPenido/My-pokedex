@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import Pokemon from './Pokemon';
@@ -14,26 +14,16 @@ function Pokedex() {
 
   const {
     images,
-    inputName,
-    setInputName,
-    filterInput,
-    filterActive, 
-    pokeFiltered,
     setFilterActive,
-    getFilteredPokemons,
     changeFilteredType,
   } = useContext(PokemonContext);
 
 
   const getPokemonTypes = () => {
     const pokemonTypesArr = images.reduce((types, { type }) => [...types, ...type], []);
-    // Transformando o Array em um Set, dentro de um Set os valores nunca podem se repetir
-    // dessa forma garantindo que não teremos tipos repetidos.
-    // Leitura sobre o Set: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Set
+    // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Set
     const pokemonTypeSet = new Set(pokemonTypesArr);
     console.log(pokemonTypeSet);
-
-    // Transformando o Set em array novamente com o Spread para utilizarmos normalmente no restante do código
     return [...pokemonTypeSet];
   }
 
@@ -58,7 +48,7 @@ function Pokedex() {
             />
           </label>*/}
         </header>
-        <Pokemon />
+        
         <div className="pokedex-buttons-panel">
           <Button
             onClick={ () => {
@@ -82,6 +72,7 @@ function Pokedex() {
             </Button>
           )) }
         </div>
+        <Pokemon />
       </div>
     );
   }

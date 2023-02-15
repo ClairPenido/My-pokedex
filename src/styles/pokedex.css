@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
 .pokedex {
   align-items: center;
   display: flex;
@@ -5,15 +6,18 @@
   margin: 10px;
 }
 
-.pokedex-buttons-panel {
-  display: flex;
-  flex-direction: row;
+body {
+  background-image: url('https://assets.pokemon.com//assets/cms2/img/misc/virtual-backgrounds/masters/forest.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #FFFFFF;
+
 }
 
-.pokedex-button {
-  background-color: green;
-  height: 50px;
-  width: 100px;
+.pokedex-buttons-panel {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .pokedex-button:disabled {
@@ -21,8 +25,14 @@
 }
 
 .filter-button {
-  background-color: orange;
-  height: 50px;
+  font-family: 'Sigmar One', cursive;
+  background-color: #FFCE31;
+  font-size: 14px;
+  border: #d0d0d0;
+  border-radius: 5px;
+  color: black;
+  height: 40px;
   margin: 10px;
   width: 80px;
+  cursor: pointer;
 }
