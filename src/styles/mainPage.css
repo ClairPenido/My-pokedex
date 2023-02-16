@@ -1,0 +1,9 @@
+.loading {
+  margin: auto;
+  width: 200px;
+  height: auto;
+}
+
+.loading img{
+  width: 200px;
+}

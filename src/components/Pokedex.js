@@ -2,8 +2,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Button from './Button';
 import Pokemon from './Pokemon';
+import Loading from './Loading';
 import '../styles/pokedex.css';
-import PokemonContext from '../context/PokemonContext';
+import Context from '../context/PokemonContext';
 
 function Pokedex() {
   const [pokemonTypes, setPokemonTypes] = useState([]);
@@ -12,7 +13,8 @@ function Pokedex() {
     images,
     setFilterActive,
     changeFilteredType,
-  } = useContext(PokemonContext);
+    // loading,
+  } = useContext(Context);
 
 
   const getPokemonTypes = () => {
@@ -26,43 +28,44 @@ function Pokedex() {
 
   useEffect(() => {
     setPokemonTypes(getPokemonTypes());
-  }, [images]); //[images]
+  }, [images]);
 
-    return (
-      images.length && 
-      <div className="pokedex">
-        <header>
-          <img src='https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png' alt='aa' />
-        </header>
-        
-        <div className="pokedex-buttons-container">
-          <Button
+
+  return (
+    images.length &&
+        <div className="pokedex">
+      <header>
+        <img src='https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png' alt='Pokedex-Logo' />
+      </header>
+
+      <div className="pokedex-buttons-container">
+        <Button
           className="filter-button all-button"
-            onClick={ () => {
-              changeFilteredType('all');
-              setFilterActive(false);
-            } }
-          >
-            all
-          </Button>
-          <div className='pokedex-buttons-panel'>
-          { pokemonTypes.map((type) => (
+          onClick={() => {
+            changeFilteredType('all');
+            setFilterActive(false);
+          }}
+        >
+          all
+        </Button>
+        <div className='pokedex-buttons-panel'>
+          {pokemonTypes.map((type) => (
             <Button
-              key={ type }
-              onClick={ () => {
+              key={type}
+              onClick={() => {
                 changeFilteredType(type);
-                setFilterActive(type !== 'all'); 
-               } }
+                setFilterActive(type !== 'all');
+              }}
               className="filter-button"
             >
-              { type }
+              {type}
             </Button>
-          )) }
-          </div>
+          ))}
         </div>
-        <Pokemon />
       </div>
-    );
-  }
+      <Pokemon />
+    </div>
+  );
+}
 
 export default Pokedex;

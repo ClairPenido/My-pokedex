@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import PokemonContext from '../context/PokemonContext';
 import '../styles/pokemonDetails.css';
 import { useParams } from 'react-router-dom';
 import api from '../api';
 import axios from 'axios';
+// const axios = require('axios/dist/browser/axios.cjs');
 
 export default function PokemonDetails() {
   const { id } = useParams();
@@ -33,11 +35,9 @@ export default function PokemonDetails() {
     const res = await api.get(`${a}`);
     const data = await res.data;
     console.log('normal', data.effect_entries);
-    const ability = data.effect_entries[0].short_effect;
-    const teste = await data.effect_entries.map((ab)=> ab.filter(ab.language.name === 'en') ); //! ajuda daqui
-    console.log('teste', teste);
-    
-    setAbiliteNormal(ability);
+    const ability = await data.effect_entries.filter((ab) => ab.language.name === 'en'); //! ajuda daqui
+    console.log('ability', ability);    
+    setAbiliteNormal(ability[0].short_effect);
   }
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function PokemonDetails() {
       setDescription(resDescription);
       console.log('descrição', resDescription);
     })() //funcao anonima
-  });
+  }, []);
 
 
   return (
@@ -75,14 +75,14 @@ export default function PokemonDetails() {
             <p>Height: {details.height} m</p>
             <p>Weight: {details.weight} kg</p>
           </div>
-          <p className='abilites-info'> Abilities: {details.abilities.map((a) => a.is_hidden ?
+          <p className='abilites-info'> Abilities: {details.abilities.map((a, index) => a.is_hidden ?
             (<p className='info-hidden'><em>{a.ability.name}</em>
               <button value={a.ability.name} className='i-button' onClick={() => { setMoreHiddenInfo(!moreHiddenInfo); catchAbilitiesHidden(a.ability.url)}}> i </button>
              {moreHiddenInfo ? <div><span className='more-info'>{abiliteHidden}</span></div> : null}
             </p>)
             : (<p>{a.ability.name}
-              <button className='i-button' onClick={() => { setMoreNormalInfo(!moreNormalInfo); catchAbilitiesNormal(a.ability.url)}}> i </button>
-              {moreNormalInfo && <div><span className='more-info'>{abiliteNormal}</span></div>}
+              <button className='i-button' onClick={() => { setMoreNormalInfo(index); catchAbilitiesNormal(a.ability.url)}}> i </button>
+              {moreNormalInfo === index ? <div><span className='more-info'>{abiliteNormal}</span></div> : null}
             </p>))
           }
           </p>

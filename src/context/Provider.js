@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import api from '../api';
 import Context from './PokemonContext';
+import api from '../api';
 
 function Provider({ children }) {
   const [pokemons, setPokemons] = useState();
@@ -13,6 +13,7 @@ function Provider({ children }) {
   const [filteredType, setFilteredType ] = useState('all');
   const [pokeFiltered, setPokeFiltered ] = useState([]);
   const [details, setDetails] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const arrayPokemons = () => {
     for (let i = 1; i <= 400; i++) {
@@ -28,6 +29,7 @@ function Provider({ children }) {
       }));
       console.log('image', pokemon);
       setImages(pokemon);
+      setLoading(false);
     });
   };
 
@@ -61,7 +63,6 @@ function Provider({ children }) {
       setDetails(data);
   }
 
-
   useEffect(() => {
     getPokemons();
     arrayPokemons();
@@ -83,6 +84,7 @@ function Provider({ children }) {
     changeFilteredType,
     CatchDetails,
     details,
+    loading,
   };
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-import * as axios from "axios";
 import allPokemons from '../tests/mocks/dataApi';
 import userEvent from '@testing-library/user-event';
+const axios = require('axios');
 
 describe('Testando a requesicão da API', () => {
   test('Testando a requesicão da API', () => {
