@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Button from './Button';
 import Pokemon from './Pokemon';
-import Loading from './Loading';
 import '../styles/pokedex.css';
 import Context from '../context/PokemonContext';
 
@@ -13,7 +12,6 @@ function Pokedex() {
     images,
     setFilterActive,
     changeFilteredType,
-    // loading,
   } = useContext(Context);
 
 
@@ -21,7 +19,6 @@ function Pokedex() {
     const pokemonTypesArr = images.reduce((types, { type }) => [...types, ...type], []);
     // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Set
     const pokemonTypeSet = new Set(pokemonTypesArr);
-    console.log(pokemonTypeSet);
     return [...pokemonTypeSet];
   }
 

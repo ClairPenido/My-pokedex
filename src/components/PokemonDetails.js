@@ -22,21 +22,16 @@ export default function PokemonDetails() {
 
 
   const catchAbilitiesHidden = async (a) => {
-    console.log('clicou no escondido');
     const res = await api.get(`${a}`);
     const data = await res.data;
     const ability = data.effect_entries[1].short_effect;
-    console.log('data:', data.effect_entries[1].short_effect);
     setAbiliteHidden(ability);
   }
 
   const catchAbilitiesNormal = async (a) => {
-    console.log('clicou no normal');
     const res = await api.get(`${a}`);
     const data = await res.data;
-    console.log('normal', data.effect_entries);
     const ability = await data.effect_entries.filter((ab) => ab.language.name === 'en'); //! ajuda daqui
-    console.log('ability', ability);    
     setAbiliteNormal(ability[0].short_effect);
   }
 
@@ -46,7 +41,6 @@ export default function PokemonDetails() {
       const results = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
       const resDescription = results.data.flavor_text_entries[9];
       setDescription(resDescription);
-      console.log('descrição', resDescription);
     })() //funcao anonima
   }, []);
 

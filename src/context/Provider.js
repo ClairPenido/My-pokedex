@@ -27,7 +27,6 @@ function Provider({ children }) {
         type: result.types.map((type) => type.type.name),
         id: result.id
       }));
-      console.log('image', pokemon);
       setImages(pokemon);
       setLoading(false);
     });
@@ -37,7 +36,6 @@ function Provider({ children }) {
     api.get('').then((response) => {
       const res = response.data.results;
       setPokemons(res);
-      console.log('res', pokemons);
     }).catch((err) => {
       console.error("ops! ocorreu um erro" + err);
     });
@@ -52,14 +50,12 @@ function Provider({ children }) {
   }
 
   const changeFilteredType = (filteredType) => {
-    console.log(filteredType);
     setFilteredType(filteredType);
   }
 
   const CatchDetails = async (id) => {
     const res = await api.get(`/${id}`);
       const data = res.data;
-      console.log('res', data);
       setDetails(data);
   }
 
@@ -70,7 +66,6 @@ function Provider({ children }) {
 
   useEffect(() => {
     getFilteredPokemons();
-    console.log('filtrados', pokeFiltered)
   }, [filteredType]);
 
 
