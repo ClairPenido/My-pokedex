@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import Button from './Button';
 import Pokemon from './Pokemon';
 import '../styles/pokedex.css';
-import pokemonObject from '../types/pokemonObject';
 import PokemonContext from '../context/PokemonContext';
 
 function Pokedex() {
@@ -65,10 +63,5 @@ function Pokedex() {
       </div>
     );
   }
-
-Pokedex.propTypes = {
-  pokemonTypes: PropTypes.arrayOf(pokemonObject).isRequired,
-  type: PropTypes.string.isRequired,
-};
 
 export default Pokedex;

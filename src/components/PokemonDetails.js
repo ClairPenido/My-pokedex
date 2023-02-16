@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import PokemonContext from '../context/PokemonContext';
 import '../styles/pokemonDetails.css';
 import { useParams } from 'react-router-dom';

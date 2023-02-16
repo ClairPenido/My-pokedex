@@ -12,7 +12,7 @@ export default function Pokemon() {
 
   const types = (types) => {
     const result = types.map((t) => {
-      return (<span className={`${t}-type`}> {t} </span>)
+      return (<span key={types.id} className={`${t}-type`}> {t} </span>)
     })
     return result;
   }
