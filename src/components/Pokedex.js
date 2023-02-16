@@ -7,9 +7,6 @@ import pokemonObject from '../types/pokemonObject';
 import PokemonContext from '../context/PokemonContext';
 
 function Pokedex() {
-  const [pokemons, setPokemons] = useState([]);
-  const [filteredType, setFilteredType ] = useState('all');
-  const [pokemonIndex, setPokemonIndex ] = useState(0);
   const [pokemonTypes, setPokemonTypes] = useState([]);
 
   const {
@@ -37,28 +34,19 @@ function Pokedex() {
       <div className="pokedex">
         <header>
           <img src='https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png' alt='aa' />
-          {/* <label> Nome:  
-          <input
-              placeholder='digite o nome do pokemon'
-              name="saveInput"
-              type="text"
-              maxLength="1"
-              value={inputName}
-              onChange={(e) => setInputName(e.target.value)}
-            />
-          </label>*/}
         </header>
         
-        <div className="pokedex-buttons-panel">
+        <div className="pokedex-buttons-container">
           <Button
+          className="filter-button all-button"
             onClick={ () => {
               changeFilteredType('all');
               setFilterActive(false);
             } }
-            className="filter-button"
           >
             all
           </Button>
+          <div className='pokedex-buttons-panel'>
           { pokemonTypes.map((type) => (
             <Button
               key={ type }
@@ -71,6 +59,7 @@ function Pokedex() {
               { type }
             </Button>
           )) }
+          </div>
         </div>
         <Pokemon />
       </div>
@@ -78,8 +67,8 @@ function Pokedex() {
   }
 
 Pokedex.propTypes = {
-  // favorites: PropTypes.arrayOf(pokemonObject).isRequired,
-  pokemons: PropTypes.arrayOf(pokemonObject).isRequired,
+  pokemonTypes: PropTypes.arrayOf(pokemonObject).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Pokedex;

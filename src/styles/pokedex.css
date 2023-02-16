@@ -14,10 +14,13 @@ body {
   color: #FFFFFF;
 
 }
+.pokedex-buttons-container {
+  display: flex;
+}
 
 .pokedex-buttons-panel {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(9,minmax(0,1fr));
 }
 
 .pokedex-button:disabled {
@@ -35,4 +38,9 @@ body {
   margin: 10px;
   width: 80px;
   cursor: pointer;
+}
+
+.all-button {
+  height: 100px;
+  width: 100px;
 }

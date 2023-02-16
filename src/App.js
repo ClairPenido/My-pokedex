@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import MainPage from './MainPage';
+import MainPage from './pages/MainPage';
 import { Route, Routes } from 'react-router-dom';
 import Provider from './context/Provider';
 import PokemonDetails from './components/PokemonDetails';

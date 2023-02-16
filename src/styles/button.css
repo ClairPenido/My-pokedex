@@ -5,3 +5,8 @@
   font-weight: 598;
   text-align: center;
 }
+
+.button-text:hover {
+  background-color: #16188F;
+  color: #FFCE31;
+}

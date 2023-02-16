@@ -7,17 +7,15 @@ function Provider({ children }) {
   const [pokemons, setPokemons] = useState();
   const [pkNImg, setpkNImg] = useState([]);
   const [images, setImages] = useState([]);
-  const [inputName, setInputName] = useState([]);
-  const [searchPK, setSearchPK] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
   const [filteredType, setFilteredType ] = useState('all');
   const [pokeFiltered, setPokeFiltered ] = useState([]);
+  const [details, setDetails] = useState(false);
 
   const arrayPokemons = () => {
-    for (let i = 1; i <= 300; i++) {
+    for (let i = 1; i <= 400; i++) {
       const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
       pkNImg.push(fetch(url).then((res) => res.json()));
-      console.log('url', pkNImg);
     }
     Promise.all(pkNImg).then((results) => {
       const pokemon = results.map((result) => ({
@@ -41,11 +39,6 @@ function Provider({ children }) {
     });
   }
 
-  const filterInput = () => {
-    const filterName = images.filter((e) => e.name.includes(inputName));
-    setImages(filterName);
-  };
-
   const getFilteredPokemons = () => {
 
     const pokemonFiltered = images.filter((pokemon) => {
@@ -57,6 +50,13 @@ function Provider({ children }) {
   const changeFilteredType = (filteredType) => {
     console.log(filteredType);
     setFilteredType(filteredType);
+  }
+
+  const CatchDetails = async (id) => {
+    const res = await api.get(`/${id}`);
+      const data = res.data;
+      console.log('res', data);
+      setDetails(data);
   }
 
 
@@ -74,13 +74,13 @@ function Provider({ children }) {
   const value = {
     pokemons,
     images,
-    inputName,
-    filterInput,
     pokeFiltered,
     filterActive,
     setFilterActive,
     getFilteredPokemons,
     changeFilteredType,
+    CatchDetails,
+    details,
   };
 
   return (
@@ -90,11 +90,11 @@ function Provider({ children }) {
   );
 }
 
-// Provider.propTypes = {
-//   children: PropTypes.oneOfType([
-//     PropTypes.arrayOf(PropTypes.node),
-//     PropTypes.node,
-//   ]).isRequired,
-// };
+Provider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 
 export default Provider;

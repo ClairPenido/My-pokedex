@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import PokemonContext from '../context/PokemonContext';
 import '../styles/pokemonDetails.css';
@@ -8,13 +8,17 @@ import axios from 'axios';
 
 export default function PokemonDetails() {
   const { id } = useParams();
-  const [details, setDetails] = useState(false);
-  const [evolutions, setEvolutions] = useState();
   const [description, setDescription] = useState();
   const [moreHiddenInfo, setMoreHiddenInfo] = useState(false);
   const [moreNormalInfo, setMoreNormalInfo] = useState(false);
   const [abiliteHidden, setAbiliteHidden] = useState();
   const [abiliteNormal, setAbiliteNormal] = useState();
+
+  const {
+    CatchDetails,
+    details,
+  } = useContext(PokemonContext);
+
 
   const catchAbilitiesHidden = async (a) => {
     console.log('clicou no escondido');
@@ -29,35 +33,35 @@ export default function PokemonDetails() {
     console.log('clicou no normal');
     const res = await api.get(`${a}`);
     const data = await res.data;
-    console.log('normal', data);
+    console.log('normal', data.effect_entries);
     const ability = data.effect_entries[0].short_effect;
-    console.log('data:', data.effect_entries[0].short_effect);
+    const teste = await data.effect_entries.map((ab)=> ab.filter(ab.language.name === 'en') ); //! ajuda daqui
+    console.log('teste', teste);
+    
     setAbiliteNormal(ability);
   }
 
   useEffect(() => {
     (async () => {
-      const res = await api.get(`/${id}`);
-      const data = res.data;
-      console.log('res', data);
-      setDetails(data);
-      const teste = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-      const alo = teste.data.flavor_text_entries[9];
-      setEvolutions(alo);
-      console.log('evolutions', alo);
+      CatchDetails(id);
+      const results = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+      const resDescription = results.data.flavor_text_entries[9];
+      setDescription(resDescription);
+      console.log('descrição', resDescription);
     })() //funcao anonima
   }, []);
 
 
   return (
     details &&
+    description &&
     <section className="pokemon-details">
       <h2 className='details-title'>
         {`${details.forms[0].name} details`}
       </h2>
       <div className='pokemon-container'>
         <div className='pokemon-stats'>
-          <em><p className='number'>Nº {details.id}</p></em>
+          <em><p className='number-detail'>Nº {details.id}</p></em>
           <img className='details-img' src={details.sprites['front_default']} alt={details.forms[0].name} />
           <p className='base-stats'> <h3>Base Stats: </h3>  {details.stats.map((stts) => {
             return (
@@ -66,7 +70,8 @@ export default function PokemonDetails() {
           </p>
         </div>
         <div className='pokemon-info'>
-          <p>{evolutions.flavor_text}</p>
+          <h3 className='description-title'>Description</h3>
+          <p className='description'>{description.flavor_text}</p>
           <div>
             <p>Height: {details.height} m</p>
             <p>Weight: {details.weight} kg</p>
@@ -87,9 +92,6 @@ export default function PokemonDetails() {
             return (<span className={`${result}-type`}> {result} </span>)
           })}
           </p>
-        </div>
-        <div> Evoluções:
-
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pokemon.css';
-import PokemonDetails from './PokemonDetails';
 import PokemonContext from '../context/PokemonContext';
 
 export default function Pokemon() {
@@ -39,8 +38,6 @@ export default function Pokemon() {
           </div>
         )
       })}
-
-
 
     </div>
   );

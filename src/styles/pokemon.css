@@ -5,25 +5,24 @@
   display: flex;
 }
 .pokemon {
-  border: 1px gray solid;
   border-radius: 10px;
   display: flex;
   justify-content: space-evenly;
   flex-flow: wrap;
   gap: 10px;
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 100%;
 }
 
 .pokemon-overview {
-  margin: 10px;
-  width: 180px;
+  margin: 18px;
+  width: 210px;
   height: auto;
 }
 .pokemon-box{
   font-family: 'Sigmar One', cursive;
   border: 5px solid #FFCE31;
-  padding: 5px;
+  padding: 10px;
   background-color: #ab87ff;
   border-radius: 10px;
   box-shadow: -5px 14px 38px -7px rgba(0,0,0,0.38);
@@ -33,14 +32,14 @@
   transform: scale(1.2);
 }
 .pokemon-image {
-background-color: #F0E2E7;
-width: 150px;
-border-radius: 5px;
+  background-color: #F0E2E7;
+  width: 150px;
+  border-radius: 5px;
 }
 
 span {
   border-radius: 5px;
-  margin: 3px;
+  margin: 4px;
   font-size: 14px;
 }
 
@@ -78,6 +77,72 @@ span {
 }
 .bug-type {
   background-color: #729F3F;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.electric-type {
+  background-color: #EED535;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.ground-type {
+  background-color: #AB9842;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.fairy-type {
+  background-color: #729F3F;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.psychic-type {
+  background-color: #F366B9;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.fighting-type {
+  background-color: #D56723;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.rock-type {
+  background-color: #A38C21;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.steel-type {
+  background-color: #9EB7B8;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.ice-type {
+  background-color: #51C4E7;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.ghost-type {
+  background-color: #7B62A3;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.dragon-type {
+  background-color: #729F3F;
+  padding: 2px 5px;  
+  color: white;  
+}
+
+.dark-type {
+  background-color: #707070;
   padding: 2px 5px;  
   color: white;  
 }
