@@ -48,7 +48,7 @@ export default function PokemonDetails() {
       setDescription(resDescription);
       console.log('descrição', resDescription);
     })() //funcao anonima
-  }, []);
+  });
 
 
   return (

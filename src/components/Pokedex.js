@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import Button from './Button';
 import Pokemon from './Pokemon';
@@ -25,7 +26,7 @@ function Pokedex() {
 
   useEffect(() => {
     setPokemonTypes(getPokemonTypes());
-  }, [images]);
+  }, [images]); //[images]
 
     return (
       images.length && 
