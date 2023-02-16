@@ -1,10 +1,9 @@
-# Getting Started with Create React App
+<h1> My Pokedex </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Objetivos:
 
-In the project directory, you can run:
+Desenvolver uma pokedex, onde seja possível vizualizar os diferentes pokemons. Ao clicar nos seus respectivos cards, é mostrado o pokemon, mais detalhes e suas habilidades. Foi utilizada requisições a [PokeApi] para trazer os devidos dados para o site.
 
 ### `npm start`
 
