@@ -10,8 +10,8 @@ function Provider({ children }) {
   const [pkNImg, setpkNImg] = useState([]);
   const [images, setImages] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
-  const [filteredType, setFilteredType ] = useState('all');
-  const [pokeFiltered, setPokeFiltered ] = useState([]);
+  const [filteredType, setFilteredType] = useState('all');
+  const [pokeFiltered, setPokeFiltered] = useState([]);
   const [details, setDetails] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -55,8 +55,8 @@ function Provider({ children }) {
 
   const CatchDetails = async (id) => {
     const res = await api.get(`/${id}`);
-      const data = res.data;
-      setDetails(data);
+    const data = res.data;
+    setDetails(data);
   }
 
   useEffect(() => {
