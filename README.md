@@ -10,7 +10,7 @@ Esse projeto é uma pokedex, onde seja possível vizualizar os diferentes pokemo
 - Poderá vizualizar o detalhe de cada pokemon, descrição, stats e habilidades;
 - Ao clicar em qualquer abilidade será mostrado sua informação;
 
-Essa aplicação foi desenvolvida com React Native e Hooks para construir a interface e seus componentes, ContextAPI para gerenciar o estado global da aplicação, a API de pokemons chamada [PokeApi](https://pokeapi.co/) para realizar a busca de todas as informações utilizadas e CSS puro para estilização dos elementos. Foram utilizadas requisições a para trazer os devidos dados para o site. Foram feitos alguns testes básicos para testar o funcionamento da aplicação.
+Essa aplicação foi desenvolvida com React Native e Hooks para construir a interface e seus componentes, ContextAPI para gerenciar o estado global da aplicação, a API de pokemons chamada [PokeApi](https://pokeapi.co/) para realizar a busca de todas as informações utilizadas e CSS puro para estilização dos elementos. Foram utilizadas requisições a para trazer os devidos dados para o site. Resolvi utilizar o css grid para a parte dos botões de filtro e ainda não consegui tornar essa parte responsiva. Ainda estão em desenvolvimento alguns testes básicos para testar o funcionamento da aplicação.
 
 ### Linguagens utilizadas
 
@@ -35,6 +35,6 @@ Inicie a aplicação
 ```
 npm start
 ``` 
-
+#### Obs.: os testes do site ainda estão sendo desenvolvidos!
 #### Dicas, sugestões, feedbacks são bem vindos! Quero evoluir e aprimorar sempre!
 

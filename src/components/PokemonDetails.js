@@ -31,7 +31,7 @@ export default function PokemonDetails() {
   const catchAbilitiesNormal = async (a) => {
     const res = await api.get(`${a}`);
     const data = await res.data;
-    const ability = await data.effect_entries.filter((ab) => ab.language.name === 'en'); //! ajuda daqui
+    const ability = await data.effect_entries.filter((ab) => ab.language.name === 'en');
     setAbiliteNormal(ability[0].short_effect);
   }
 
@@ -71,11 +71,11 @@ export default function PokemonDetails() {
           </div>
           <p className='abilites-info'> Abilities: {details.abilities.map((a, index) => a.is_hidden ?
             (<p className='info-hidden'><em>{a.ability.name}</em>
-              <button value={a.ability.name} className='i-button' onClick={() => { setMoreHiddenInfo(!moreHiddenInfo); catchAbilitiesHidden(a.ability.url)}}> i </button>
-             {moreHiddenInfo ? <div><span className='more-info'>{abiliteHidden}</span></div> : null}
+              <button value={a.ability.name} className='i-button' onClick={() => { setMoreHiddenInfo(!moreHiddenInfo); catchAbilitiesHidden(a.ability.url) }}> i </button>
+              {moreHiddenInfo ? <div><span className='more-info'>{abiliteHidden}</span></div> : null}
             </p>)
             : (<p>{a.ability.name}
-              <button className='i-button' onClick={() => { setMoreNormalInfo(index); catchAbilitiesNormal(a.ability.url)}}> i </button>
+              <button className='i-button' onClick={() => { setMoreNormalInfo(index); catchAbilitiesNormal(a.ability.url) }}> i </button>
               {moreNormalInfo === index ? <div><span className='more-info'>{abiliteNormal}</span></div> : null}
             </p>))
           }
